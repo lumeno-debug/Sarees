@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Affan Sarees | Royal Silk Heritage</title>
+    <!-- Google Fonts + Tailwind + Font Awesome + AOS animation -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        body {
+            background: #fef9f0;
+            background-image: radial-gradient(circle at 10% 20%, rgba(230, 190, 120, 0.05) 0%, rgba(255, 245, 235, 0.9) 90%);
+        }
+        .gold-text {
+            background: linear-gradient(135deg, #b67e2e, #e7c278);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(212, 175, 55, 0.2);
+        }
+        .saree-card {
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .saree-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.25);
+        }
+        .btn-gold {
+            background: linear-gradient(105deg, #b67e2e, #e7c278);
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(183, 126, 46, 0.3);
+        }
+        .btn-gold:hover {
+            background: linear-gradient(105deg, #9f6720, #dbb45c);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(183, 126, 46, 0.4);
+        }
+        .admin-gradient {
+            background: linear-gradient(135deg, #241a1f 0%, #3c2632 100%);
+        }
+        .status-badge {
+            transition: all 0.2s;
+        }
+        .order-card {
+            border-left: 4px solid #d4af37;
+            transition: all 0.2s;
+        }
+        .order-card:hover {
+            background-color: #fef9ef;
+        }
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+        }
+        input, textarea, select {
+            border: 1px solid #f0e0cc;
+            transition: 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #c7a252;
+            box-shadow: 0 0 0 3px rgba(199, 162, 82, 0.2);
+            outline: none;
+        }
+        /* custom scroll */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #f1e5d6; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #c7a252; border-radius: 10px; }
+        .hero-pattern {
+            background: linear-gradient(112deg, #fff0e0 0%, #fff8f0 100%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<div id="app" class="max-w-7xl mx-auto px-4 md:px-6 py-5 md:py-8">
+
+    <!-- LOGIN PAGE -->
+    <div id="loginContainer" class="min-h-[90vh] flex items-center justify-center">
+        <div class="glass-card w-full max-w-md p-8 md:p-10 transition-all duration-500 shadow-2xl">
+            <div class="text-center mb-6">
+                <i class="fas fa-sari text-6xl text-amber-700 drop-shadow-md"></i>
+                <h1 class="text-4xl playfair font-bold mt-3 text-gray-800">Affan <span class="gold-text">Sarees</span></h1>
+                <p class="text-gray-500 text-sm mt-2">Where tradition meets elegance</p>
+            </div>
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1"><i class="fas fa-user mr-1 text-amber-600"></i>Full Name</label>
+                    <input type="text" id="loginName" placeholder="Aisha Verma" class="w-full px-4 py-3 rounded-xl bg-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1"><i class="fas fa-phone-alt mr-1 text-amber-600"></i>Phone Number</label>
+                    <input type="tel" id="loginPhone" placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1"><i class="fas fa-envelope mr-1 text-amber-600"></i>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="hello@affan.com" class="w-full px-4 py-3 rounded-xl">
+                </div>
+                <button id="normalLoginBtn" class="w-full btn-gold text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-lg">
+                    <i class="fas fa-user-circle"></i> Enter the Saree Atelier
+                </button>
+            </div>
+            <div class="mt-8 pt-4 border-t border-amber-200 text-center">
+                <p class="text-xs text-gray-400 uppercase tracking-wider">✨ exclusive access ✨</p>
+                <button id="adminTriggerBtn" class="mt-2 text-sm bg-amber-50 hover:bg-amber-100 text-amber-800 font-medium px-5 py-2 rounded-full shadow-sm inline-flex items-center gap-2 transition">
+                    <i class="fas fa-lock"></i> LOGIN AS ADMINISTRATOR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NORMAL USER DASHBOARD (Expansive Gallery) -->
+    <div id="userDashboard" class="hidden">
+        <div class="hero-pattern rounded-3xl p-5 md:p-8 mb-10 shadow-sm border border-amber-100">
+            <div class="flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <h2 class="text-3xl md:text-4xl playfair font-bold text-gray-800"><i class="fas fa-sari text-amber-700 mr-2"></i>Affan's <span class="gold-text">Eternal Collection</span></h2>
+                    <p class="text-gray-600 text-md mt-1" id="welcomeUserMsg"></p>
+                </div>
+                <button id="userLogoutBtn" class="bg-white/70 backdrop-blur-md px-6 py-2.5 rounded-full shadow-md text-amber-800 font-semibold border border-amber-300 hover:bg-amber-100 transition flex items-center gap-2">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-3 text-sm text-amber-700">
+                <span class="bg-white/60 px-3 py-1 rounded-full"><i class="fas fa-truck-fast mr-1"></i> Free shipping</span>
+                <span class="bg-white/60 px-3 py-1 rounded-full"><i class="fas fa-hand-holding-heart mr-1"></i> Handloom promise</span>
+                <span class="bg-white/60 px-3 py-1 rounded-full"><i class="fas fa-gem mr-1"></i> Pure zari collection</span>
+            </div>
+        </div>
+        
+        <!-- filter / search bar optional but decorative -->
+        <div class="flex justify-between items-center flex-wrap gap-4 mb-8">
+            <div class="relative">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-amber-500"></i>
+                <input type="text" id="sareeSearch" placeholder="Search by name..." class="pl-10 pr-4 py-2 rounded-full border-amber-200 w-64 bg-white shadow-sm">
+            </div>
+            <div class="text-sm text-amber-700 bg-amber-50 px-4 py-2 rounded-full"><i class="fas fa-tshirt mr-1"></i> 12 handcrafted varieties</div>
+        </div>
+
+        <div id="sareeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+    </div>
+
+    <!-- ADMIN DASHBOARD (with status management + history) -->
+    <div id="adminDashboard" class="hidden">
+        <div class="admin-gradient rounded-2xl p-6 md:p-8 shadow-2xl flex flex-wrap justify-between items-center text-white mb-8">
+            <div>
+                <h1 class="text-3xl md:text-4xl playfair font-bold"><i class="fas fa-crown mr-3 text-yellow-300"></i>Admin Sanctum</h1>
+                <p class="text-amber-100 text-sm mt-1">Manage orders, confirm dispatch & archive completed</p>
+            </div>
+            <button id="adminLogoutBtn" class="bg-white/15 hover:bg-white/25 backdrop-blur-sm px-6 py-2.5 rounded-xl transition font-medium flex items-center gap-2">
+                <i class="fas fa-power-off"></i> Exit Admin
+            </button>
+        </div>
+
+        <!-- Tabs: Active Orders & History -->
+        <div class="mb-6 flex gap-3 border-b border-amber-200">
+            <button id="tabActiveBtn" class="px-5 py-2 text-lg font-semibold text-amber-800 border-b-2 border-amber-700 transition">📦 Active Orders</button>
+            <button id="tabHistoryBtn" class="px-5 py-2 text-lg font-semibold text-gray-500 hover:text-amber-700 transition">📜 Order History (Done)</button>
+        </div>
+
+        <!-- Active orders container -->
+        <div id="activeOrdersContainer" class="space-y-5 mb-10"></div>
+        <!-- History orders container -->
+        <div id="historyOrdersContainer" class="space-y-5 hidden"></div>
+    </div>
+</div>
+
+<!-- ORDER MODAL (rich version) -->
+<div id="orderModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-overlay transition-all duration-300">
+    <div class="bg-white rounded-2xl max-w-lg w-full mx-4 p-7 shadow-2xl transform transition-all">
+        <div class="flex justify-between items-center border-b pb-3 border-amber-200">
+            <h3 class="text-2xl playfair font-bold text-gray-800"><i class="fas fa-shopping-cart text-amber-700 mr-2"></i>Complete Order</h3>
+            <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600 text-3xl leading-5">&times;</button>
+        </div>
+        <div class="mt-5 space-y-4">
+            <div class="bg-gradient-to-r from-amber-50 to-amber-100 p-4 rounded-xl">
+                <p class="font-bold text-gray-800 text-lg" id="modalSareeName">Silk Saree</p>
+                <p class="text-amber-700 text-md font-semibold" id="modalSareePrice"></p>
+            </div>
+            <input type="text" id="orderCustomerName" placeholder="Full Name *" class="w-full border rounded-xl px-4 py-3">
+            <input type="tel" id="orderCustomerPhone" placeholder="Phone Number *" class="w-full border rounded-xl px-4 py-3">
+            <textarea id="orderAddress" rows="3" placeholder="Complete Delivery Address *" class="w-full border rounded-xl px-4 py-3"></textarea>
+            <button id="confirmOrderBtn" class="w-full btn-gold text-white font-bold py-3.5 rounded-xl shadow-md transition-all text-lg flex items-center justify-center gap-2">
+                <i class="fas fa-check-circle"></i> Place Order
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ---------- EXPANDED SAREE CATALOG (Rich, 12 items) ----------
+    const sareeCatalog = [
+        { id: 1, name: "Royal Banarasi Silk", price: 5499, category: "silk", icon: "fas fa-crown", bg: "from-rose-100 to-amber-50", desc: "Gold zari & intricate meenakari" },
+        { id: 2, name: "Kanjivaram Iridescent", price: 13999, category: "silk", icon: "fas fa-gem", bg: "from-purple-100 to-pink-100", desc: "Pure silk with temple border" },
+        { id: 3, name: "Chanderi Summer Breeze", price: 3299, category: "cotton", icon: "fas fa-feather-alt", bg: "from-green-50 to-teal-50", desc: "Lightweight & airy drape" },
+        { id: 4, name: "Paithani Peacock", price: 9999, category: "silk", icon: "fas fa-fan", bg: "from-orange-100 to-yellow-50", desc: "Peacock motif & vibrant hues" },
+        { id: 5, name: "Linen Handloom", price: 3899, category: "linen", icon: "fas fa-leaf", bg: "from-indigo-50 to-blue-50", desc: "Breathable linen for daily elegance" },
+        { id: 6, name: "Embroidered Festive", price: 7499, category: "designer", icon: "fas fa-star", bg: "from-fuchsia-50 to-pink-100", desc: "Sequins & thread art" },
+        { id: 7, name: "Mulmul Cotton Jamdani", price: 2799, category: "cotton", icon: "fas fa-cloud", bg: "from-slate-50 to-gray-100", desc: "Handwoven floral motifs" },
+        { id: 8, name: "Mysore Silk Classic", price: 8499, category: "silk", icon: "fas fa-trophy", bg: "from-yellow-50 to-amber-50", desc: "Lustrous & heavy silk" },
+        { id: 9, name: "Tussar Gold Tissue", price: 11499, category: "silk", icon: "fas fa-sun", bg: "from-amber-100 to-orange-50", desc: "Metallic shimmer & rustic feel" },
+        { id: 10, name: "Bengal Handloom Tant", price: 2199, category: "cotton", icon: "fas fa-water", bg: "from-blue-50 to-cyan-50", desc: "Traditional white & red border" },
+        { id: 11, name: "Leheriya Bandhani", price: 4299, category: "designer", icon: "fas fa-palette", bg: "from-pink-100 to-red-50", desc: "Rajasthani tie-dye magic" },
+        { id: 12, name: "Organza Silk Fusion", price: 6599, category: "silk", icon: "fas fa-wind", bg: "from-white to-amber-50", desc: "Sheer & whimsical floral" }
+    ];
+
+    // Storage keys
+    const STORAGE_ORDERS_KEY = 'affan_orders_v2';
+
+    // Helper functions
+    function loadOrders() {
+        const stored = localStorage.getItem(STORAGE_ORDERS_KEY);
+        if (stored) {
+            try { return JSON.parse(stored); } catch(e) { return []; }
+        }
+        return [];
+    }
+
+    function saveOrders(orders) {
+        localStorage.setItem(STORAGE_ORDERS_KEY, JSON.stringify(orders));
+    }
+
+    // Add new order (status = 'pending')
+    function addNewOrder(orderObj) {
+        const orders = loadOrders();
+        orders.unshift({ ...orderObj, status: 'pending', orderDate: new Date().toLocaleString() });
+        saveOrders(orders);
+    }
+
+    // Update order status (active ↔ confirmed ↔ completed)
+    function updateOrderStatus(orderId, newStatus) {
+        let orders = loadOrders();
+        orders = orders.map(order => order.orderId === orderId ? { ...order, status: newStatus } : order);
+        saveOrders(orders);
+        return orders;
+    }
+
+    // Remove order completely (when "done" moved to history we actually change status = 'completed' and keep as archived)
+    // In our system, 'completed' orders appear in History. admin can also delete from history? optional. But we'll keep them never deleted.
+    // We'll implement: Active orders: pending, confirmed, (wait = confirmed alias) . 'Done' = completed -> moves to history.
+    
+    // UI states
+    let currentView = 'login';
+    let currentUserData = null;
+    let selectedSareeForOrder = null;
+    let activeTab = 'active'; // 'active' or 'history'
+
+    // DOM Elements
+    const loginContainer = document.getElementById('loginContainer');
+    const userDashboard = document.getElementById('userDashboard');
+    const adminDashboard = document.getElementById('adminDashboard');
+    const sareeGrid = document.getElementById('sareeGrid');
+    const welcomeUserMsg = document.getElementById('welcomeUserMsg');
+    const orderModal = document.getElementById('orderModal');
+    const activeContainer = document.getElementById('activeOrdersContainer');
+    const historyContainer = document.getElementById('historyOrdersContainer');
+    const tabActiveBtn = document.getElementById('tabActiveBtn');
+    const tabHistoryBtn = document.getElementById('tabHistoryBtn');
+
+    function setView(view) {
+        currentView = view;
+        loginContainer.classList.add('hidden');
+        userDashboard.classList.add('hidden');
+        adminDashboard.classList.add('hidden');
+        if (view === 'login') {
+            loginContainer.classList.remove('hidden');
+            sessionStorage.removeItem('affan_admin_auth');
+            sessionStorage.removeItem('affan_user_session');
+        } else if (view === 'user') {
+            userDashboard.classList.remove('hidden');
+            renderSareeCatalog(sareeCatalog);
+            if (currentUserData) welcomeUserMsg.innerText = `✨ Welcome, ${currentUserData.name}! Explore our heritage weave ✨`;
+            else welcomeUserMsg.innerText = `✨ Welcome to the world of exquisite sarees ✨`;
+        } else if (view === 'admin') {
+            adminDashboard.classList.remove('hidden');
+            renderAdminOrders();
+        }
+    }
+
+    // Render Gallery with search
+    function renderSareeCatalog(catalog) {
+        const searchTerm = document.getElementById('sareeSearch')?.value.toLowerCase() || '';
+        let filtered = catalog.filter(s => s.name.toLowerCase().includes(searchTerm));
+        sareeGrid.innerHTML = '';
+        if (filtered.length === 0) {
+            sareeGrid.innerHTML = `<div class="col-span-full text-center py-16 text-gray-400"><i class="fas fa-search text-4xl mb-2"></i><p>No saree found, try another name.</p></div>`;
+            return;
+        }
+        filtered.forEach(saree => {
+            const card = document.createElement('div');
+            card.className = `saree-card glass-card overflow-hidden rounded-2xl bg-white transition-all group`;
+            card.innerHTML = `
+                <div class="h-48 bg-gradient-to-br ${saree.bg} flex items-center justify-center relative">
+                    <i class="${saree.icon} text-7xl text-amber-700/70 drop-shadow-md transition-transform group-hover:scale-110 duration-300"></i>
+                    <div class="absolute bottom-2 right-2 bg-white/60 px-2 py-0.5 rounded-full text-xs font-medium text-amber-800">${saree.category}</div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl playfair text-gray-800">${saree.name}</h3>
+                    <p class="text-xs text-amber-600 mt-1">${saree.desc}</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-2xl font-bold text-gray-900">₹${saree.price.toLocaleString()}</span>
+                        <button data-id="${saree.id}" class="orderNowBtn bg-amber-700 hover:bg-amber-800 text-white px-4 py-2 rounded-xl text-sm font-medium shadow-md transition flex gap-1 items-center">
+                            <i class="fas fa-bag-shopping"></i> Order
+                        </button>
+                    </div>
+                </div>
+            `;
+            sareeGrid.appendChild(card);
+        });
+        document.querySelectorAll('.orderNowBtn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                const saree = catalog.find(s => s.id === id);
+                if (saree) openOrderModal(saree);
+            });
+        });
+    }
+
+    function openOrderModal(saree) {
+        selectedSareeForOrder = saree;
+        document.getElementById('modalSareeName').innerText = saree.name;
+        document.getElementById('modalSareePrice').innerHTML = `₹ ${saree.price.toLocaleString()}`;
+        if (currentUserData) {
+            document.getElementById('orderCustomerName').value = currentUserData.name || '';
+            document.getElementById('orderCustomerPhone').value = currentUserData.phone || '';
+        } else {
+            document.getElementById('orderCustomerName').value = '';
+            document.getElementById('orderCustomerPhone').value = '';
+        }
+        document.getElementById('orderAddress').value = '';
+        orderModal.classList.remove('hidden');
+        orderModal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        orderModal.classList.add('hidden');
+        orderModal.style.display = 'none';
+        selectedSareeForOrder = null;
+    }
+
+    function submitOrder() {
+        if (!selectedSareeForOrder) return;
+        const name = document.getElementById('orderCustomerName').value.trim();
+        const phone = document.getElementById('orderCustomerPhone').value.trim();
+        const address = document.getElementById('orderAddress').value.trim();
+        if (!name || !phone |
